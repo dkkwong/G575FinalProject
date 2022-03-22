@@ -2,6 +2,6 @@
  Mapping sculptures around Madison
 
 ###Team Members
-Ben Isaacs
-Sammy Fogel
-David Kwong
+1. Ben Isaacs
+2. Sammy Fogel
+3. David Kwong
