@@ -1,5 +1,5 @@
 # G575FinalProject
- Mapping sculptures around Madison
+ Mapping sculptures around Madison.
 
 ### Team Members
 1. Ben Isaacs
