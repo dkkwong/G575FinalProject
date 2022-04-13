@@ -22,3 +22,16 @@ Hoping to get an **overview** of where public sculptures are located, Susan open
 |Photos        |Photos of each sculpture will be shown through the pop-up window. Photos collected by hand.
 |Neighborhods  |Madison neighborhood polygons are available from the City of Madison Open Data. Will be used to allow for filtering by neighborhood.
 |Information   |Further information about the sculptures such as name, artist, year made, and materials made from will be shown as text in the pop-up window. Information will come from the City of Madison.
+
+|Interaction             |Description|
+|--------------          |-----------|
+|Zoom                    |Zoom:Location. Adjust map scale using zoom widgets or double click direct manipulation. Constrained to Madison
+|Pan                     |Pan:Location. Move around the map using click and drag direct manipulation. Constrained to Madison
+|Search Bar              |Search:Objects. Form fill-in allows users to find specific sculptures by name or artist.
+|Filter by Neighborhood  |Filter:Location. Drop down menu to filter for sculptures only in the selected neighborhood
+|Filter by Date          |Filter:Time. Slider timeline with intervals every decade. Users can filter for sculptures within the given time range
+|Filter by Material      |Filter:Objects. Drop down menu to filter sculptures by the material they are made of.
+|Pop-up Window           |Retrieve:Objects. When a sculpture marker is clicked shows an information window containing more details about the sculpture and a photo of the sculpture
+|Feedback                |Retrieve:Objects. When clicked brings up a form fill-in window with two tabs. One tab for reporting bugs or problems, and one tab for reporting a sculpture not included in our map.
+|Toggle Layer            |Reexpress:basemap. When clicked swaps the base map between a street map and satellite layer
+|Favorite Sculpture      |Resymbolize:Objects. When clicked it marks the sculpture as ‘favorite’ on the map, changing the marker
