@@ -3,6 +3,9 @@
     width: 80%;
     display: inline-block;
 }
-.leaflet-popup-content{display: inline-block;
 
+.leaflet-popup-content{display: inline-block;
+}
+
+.leaflet-control-layers{background-color: rgb(236, 226, 226);
 }
