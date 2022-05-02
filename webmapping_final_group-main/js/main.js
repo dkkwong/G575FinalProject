@@ -26,8 +26,8 @@ function createMap(){
    
     //create the map
     map = L.map('map', {
-        center: [20, 0],
-        zoom: 2,
+        center: [43.075, -89.41],
+        zoom: 13,
         layers: [Stamen_Watercolor,Stamen_TonerLabels] //watercolor is default base layer with labels as overlay
     });
     var baseMaps = {
@@ -57,14 +57,16 @@ function getData(){
         })
         .then(function(json){
             var data = json.features //create variable to contain data
-            console.log(data)
+            console.log(data);
 
             L.geoJson(data, { 
                 onEachFeature: onEachFeature  //use to bind associated information to each marker as a pop-up
             }).addTo(map);
 
             var attributes = processData(json); //create a list of column field names
-            console.log(attributes)
+            console.log(attributes);
+
+            createSequenceControls();
         })
         
 };
@@ -91,6 +93,33 @@ function onEachFeature(feature, layer) {
         }
         layer.bindPopup(popupContent);
     };
+};
+
+function createSequenceControls(){
+    var SequenceControl = L.Control.extend({
+        options: {
+            position: 'bottomleft'
+        },
+
+        onAdd: function () {
+            // create the control container div with a particular class name
+            var container = L.DomUtil.create('div', 'sequence-control-container');
+
+            //create range input element (slider)
+            container.insertAdjacentHTML('beforeend', '<input class="range-slider" type="range">')
+
+            //add skip buttons
+            container.insertAdjacentHTML('afterbegin', '<button class="step" id="reverse" title="Reverse">Reverse</button>'); 
+            container.insertAdjacentHTML('beforeend', '<button class="step" id="forward" title="Forward">Forward</button>');
+
+             //disable any mouse event listeners for the container
+             L.DomEvent.disableClickPropagation(container);
+
+            return container;
+        }
+    });
+    //add listeners 
+    map.addControl(new SequenceControl());
 };
 
 document.addEventListener('DOMContentLoaded',createMap)

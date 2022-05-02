@@ -1,6 +1,6 @@
 #map {
     height: 600px;
-    width: 80%;
+    width: 100%;
     display: inline-block;
 }
 
@@ -8,4 +8,8 @@
 }
 
 .leaflet-control-layers{background-color: rgb(236, 226, 226);
+}
+
+.sequence-control-container{
+    height:20px;
 }
