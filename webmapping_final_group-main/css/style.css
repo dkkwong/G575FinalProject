@@ -47,14 +47,17 @@
     display: inline-block;
 }
 
-.leaflet-popup-content{display: inline-block;
+.leaflet-popup-content{
+    display: inline-block;
+    font-weight: bold;
 }
 
 .leaflet-control-layers{background-color: rgb(236, 226, 226);
 }
 /*neighborhood boundaries*/
 .leaflet-interactive{
-    fill-opacity: 10%;
+    fill-opacity: 0%;
+    stroke-opacity: 0%;
 }
 /* scale bar*/
 .leaflet-control-scale-line{fill-opacity: 10%;
