@@ -51,6 +51,14 @@ function createMap(){
 
 function getData(){
     //load the data
+    fetch("data/our_boundaries.geojson") //path where data is stored
+        .then(function(response){
+            return response.json();
+        })
+        .then(function(json){
+            L.geoJson(json).addTo(map);
+        })
+
     fetch("data/SculptureData.geojson") //path where data is stored
         .then(function(response){
             return response.json();

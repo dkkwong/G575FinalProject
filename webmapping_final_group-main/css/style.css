@@ -43,3 +43,7 @@
 
 .leaflet-control-layers{background-color: rgb(236, 226, 226);
 }
+/*neighborhood boundaries*/
+.leaflet-interactive{
+    fill-opacity: 10%;
+}
