@@ -138,8 +138,35 @@ function createSequenceControls(){
     sequence.insertAdjacentHTML('beforeend', '<input class="range-slider" type="range">')
 
     //add skip buttons
-    sequence.insertAdjacentHTML('afterbegin', '<button class="step" id="reverse" title="Reverse">R</button>'); 
-    sequence.insertAdjacentHTML('beforeend', '<button class="step" id="forward" title="Forward">F</button>');
+    sequence.insertAdjacentHTML('afterbegin', '<button class="step" id="reverse" title="Reverse">-</button>'); 
+    sequence.insertAdjacentHTML('beforeend', '<button class="step" id="forward" title="Forward">+</button>');
+
+    document.querySelector(".range-slider").max = 2022;
+    document.querySelector(".range-slider").min = 1892;
+    document.querySelector(".range-slider").value = 2022;
+    document.querySelector(".range-slider").step = 10;
+
+    document.querySelectorAll('.step').forEach(function(step){
+        step.addEventListener("click", function(){
+            var index = parseInt(document.querySelector('.range-slider').value);
+
+            //increment or decrement depending on button clicked
+            if (step.id == 'forward'){
+                index+=10; //increase year by 10
+            } else if (step.id == 'reverse'){
+                index-= 10; //decrease year by 10
+            };
+            //update slider
+        document.querySelector('.range-slider').value = index
+        console.log(index)
+        })
+    })
+    // input listener for slider
+    document.querySelector('.range-slider').addEventListener('input', function(){
+        // get the new index value
+        var index = this.value;
+        
+    });
 };
 
 
@@ -223,4 +250,5 @@ function createFeedback(){
     feedback=document.querySelector('#feedback')
     feedback.insertAdjacentHTML('beforeend','<button class="btn feedback">Feedback</button>')
 }
+
 document.addEventListener('DOMContentLoaded',createMap)
