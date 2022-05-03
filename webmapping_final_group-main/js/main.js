@@ -61,7 +61,7 @@ function getData(){
             L.geoJson(json).addTo(map);
         })
 
-    fetch("data/SculptureData.geojson") //path where data is stored
+    fetch("data/sculpture_data_updated.geojson") //path where data is stored
         .then(function(response){
             return response.json();
         })
