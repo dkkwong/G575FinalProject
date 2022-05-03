@@ -37,7 +37,6 @@ function createMap(){
         layers: [Stamen_Watercolor,Stamen_TonerLabels], //watercolor is default base layer with labels as overlay
     });
 
-    //var latlngs = L.rectangle(map).getLatLngs();
 
     var baseMaps = {
         "Watercolor": Stamen_Watercolor,
@@ -47,11 +46,6 @@ function createMap(){
     var overlayMaps = {
         "Labels": Stamen_TonerLabels
     };
-
-    //set max bounds
-    //L.polyline(latlngs[0].concat(latlngs[0][0])).addTo(map);
-
-    //map.setMaxBounds(bounds);	
 
     //add layer control to the map
     L.control.layers(baseMaps, overlayMaps).addTo(map);
