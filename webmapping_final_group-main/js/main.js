@@ -113,8 +113,8 @@ function onEachFeature(feature, layer) {
         //loop to add feature property names and values to html string
         for (var property in feature.properties){
             if(property=="Link"){
-                links += feature.properties[property];
-                console.log(links)
+                //links += feature.properties[property];
+                //console.log(links)
                 if(!links){
                     continue
                 }else{
@@ -169,10 +169,11 @@ function runSearch() {
             li[i].style.display = "none";
         }
     }
-    document.querySelector('#menu').addEventListener('click',function(event){
+    //event listener to hide search menu
+    document.querySelector('#menu').addEventListener('mouseout',function(event){
         var menu = document.querySelector('#menu')
         while (menu.hasChildNodes()){
-            menu.removeChild(event.target.firstChild)
+            menu.removeChild(menu.firstChild)   
         }
     
     })
