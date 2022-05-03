@@ -46,7 +46,12 @@
 .artist-option{
     fill-opacity: 100%;
 }
-
+#reset{
+    width:240px;
+    height:30px;
+    position:absolute;
+    top:340px;
+}
 #feedback{
     width:240px;
     height:30px;

@@ -66,7 +66,9 @@ function getData(){
             return response.json();
         })
         .then(function(json){
-            L.geoJson(json).addTo(map);
+            L.geoJson(json,{
+                onEachFeature: onEachFeature //bind pop-up
+            }).addTo(map);
         })
 
     fetch("data/sculpture_data_updated.geojson") //path where data is stored
@@ -87,7 +89,9 @@ function getData(){
             createSequenceControls();
             createSearchBar(data);
             createDropdown(data);
+            createReset();
             createFeedback();
+            
         })
         
 };
@@ -210,6 +214,10 @@ function createDropdown(data){
        
    }
 };
+function createReset(){
+    feedback=document.querySelector('#reset')
+    feedback.insertAdjacentHTML('beforeend','<button class="btn reset">Reset</button>')
+}
 
 function createFeedback(){
     feedback=document.querySelector('#feedback')
