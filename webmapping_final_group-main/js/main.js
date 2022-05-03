@@ -23,19 +23,21 @@ function createMap(){
         maxZoom: 20,
         ext: 'png'
     })
-   
+    //global vars to hold bounds
+    var southWest = [43.016578, -89.533500],
+        northEast = [43.137417, -89.296058],
+        bounds = L.latLngBounds(southWest,northEast)
     //create the map
     map = L.map('map', {
         center: [43.075, -89.41],
         zoom: 13,
         minZoom: 13, //constrain zoom so users can't zoom out beyond default
         maxZoom: 17, //constrain zoom so users can only zoom in 2 levels beyond default
-        center: bounds.getCenter(),
+        maxBounds: bounds,
         layers: [Stamen_Watercolor,Stamen_TonerLabels], //watercolor is default base layer with labels as overlay
-        maxBounds: bounds
     });
 
-    var latlngs = L.rectangle(bounds).getLatLngs();
+    //var latlngs = L.rectangle(map).getLatLngs();
 
     var baseMaps = {
         "Watercolor": Stamen_Watercolor,
@@ -47,9 +49,9 @@ function createMap(){
     };
 
     //set max bounds
-    L.polyline(latlngs[0].concat(latlngs[0][0])).addTo(map);
+    //L.polyline(latlngs[0].concat(latlngs[0][0])).addTo(map);
 
-    map.setMaxBounds(bounds);	
+    //map.setMaxBounds(bounds);	
 
     //add layer control to the map
     L.control.layers(baseMaps, overlayMaps).addTo(map);
