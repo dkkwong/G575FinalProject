@@ -24,6 +24,12 @@
     position:absolute;
     top:180px;
 }
+#feedback{
+    width:240px;
+    height:30px;
+    position:absolute;
+    top:380px;
+}
 #panel{
     width:16%;
     height:700px;
@@ -46,4 +52,8 @@
 /*neighborhood boundaries*/
 .leaflet-interactive{
     fill-opacity: 10%;
+}
+/* scale bar*/
+.leaflet-control-scale-line{fill-opacity: 10%;
+
 }

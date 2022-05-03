@@ -42,7 +42,9 @@ function createMap(){
     //add layer control to the map
     L.control.layers(baseMaps, overlayMaps).addTo(map);
 
-
+    //scale bar
+    L.control.scale().addTo(map);
+        
 
     //call data function
     getData()
@@ -77,6 +79,7 @@ function getData(){
             createSequenceControls();
             createSearchBar();
             createDropdown();
+            createFeedback();
         })
         
 };
@@ -115,6 +118,8 @@ function createSequenceControls(){
     sequence.insertAdjacentHTML('beforeend', '<button class="step" id="forward" title="Forward">F</button>');
 };
 
+
+
 function createSearchBar(){
     search=document.querySelector('#search')
     search.insertAdjacentHTML('beforeend','<input type="text" placeholder="Search"></input>')
@@ -128,5 +133,8 @@ function createDropdown(){
     neighborhood.insertAdjacentHTML('beforeend','<select name="Neighborhood" id="Neighborhood"><option value="" selected="selected">Choose Neighborhood</option></select>')
 };
 
-
+function createFeedback(){
+    feedback=document.querySelector('#feedback')
+    feedback.insertAdjacentHTML('beforeend','<button class="btn feedback">Feedback</button>')
+}
 document.addEventListener('DOMContentLoaded',createMap)
