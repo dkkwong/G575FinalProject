@@ -33,7 +33,6 @@ function createMap(){
         zoom: 13,
         minZoom: 13, //constrain zoom so users can't zoom out beyond default
         maxZoom: 17, //constrain zoom so users can only zoom in 2 levels beyond default
-        //center: bounds.getCenter(),
         maxBounds: bounds,
         layers: [Stamen_Watercolor,Stamen_TonerLabels], //watercolor is default base layer with labels as overlay
     });
