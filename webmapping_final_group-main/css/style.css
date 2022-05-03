@@ -18,6 +18,9 @@
     position:absolute;
     top:80px;
 }
+#menu li{
+    display:none;
+  }
 #dropdown{
     width:240px;
     height:30px;

@@ -77,7 +77,7 @@ function getData(){
             console.log(attributes);
 
             createSequenceControls();
-            createSearchBar();
+            createSearchBar(data);
             createDropdown();
             createFeedback();
         })
@@ -128,10 +128,37 @@ function createSequenceControls(){
 
 
 
-function createSearchBar(){
+function createSearchBar(data){
     search=document.querySelector('#search')
-    search.insertAdjacentHTML('beforeend','<input type="text" placeholder="Search"></input>')
+    search.insertAdjacentHTML('beforeend','<input type="text" id="Search" onkeyup="runSearch()" placeholder="Search"></input>')
+
+    search.insertAdjacentHTML('beforeend','<ul id=menu></ul>') //create unordered list
+    
+    for (var i=0; i<data.length; i++){
+        var name = data[i].properties.Name
+        //add sculpture names to list
+        document.querySelector('ul').insertAdjacentHTML('beforeend','<li class="name">' + name + '</li>')
+
+    }
 };
+//function is called when you type into the search bar
+function runSearch() {
+    // Declare variables
+    var input = document.getElementById("Search");
+    var filter = input.value.toUpperCase();
+    var ul = document.getElementById("menu");
+    var li = ul.getElementsByClassName("name");
+    console.log(li)
+    // Loop through all list items, and hide those who don't match the search query
+    for (var i = 0; i < li.length; i++) { 
+        if (li[i].innerHTML.toUpperCase().includes(filter)) {
+            li[i].style.display = "block";
+        } else {
+            li[i].style.display = "none";
+        }
+    }
+    document.querySelector('#menu').addEventListener('click',li.style.display = "none")
+}
 
 function createDropdown(){
     material=document.querySelector('#dropdown')
