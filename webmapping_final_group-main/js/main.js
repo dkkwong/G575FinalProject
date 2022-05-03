@@ -29,6 +29,7 @@ function createMap(){
         center: [43.075, -89.41],
         zoom: 13,
         minZoom: 13,
+        maxZoom: 15,
         layers: [Stamen_Watercolor,Stamen_TonerLabels] //watercolor is default base layer with labels as overlay
     });
     var baseMaps = {
