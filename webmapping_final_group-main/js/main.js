@@ -8,7 +8,7 @@ function createMap(){
         attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
         subdomains: 'abcd',
         minZoom: 1,
-        maxZoom: 16,
+        maxZoom: 18,
         ext: 'jpg'
     })
     var Esri_WorldImagery = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
@@ -28,8 +28,15 @@ function createMap(){
     map = L.map('map', {
         center: [43.075, -89.41],
         zoom: 13,
-        layers: [Stamen_Watercolor,Stamen_TonerLabels] //watercolor is default base layer with labels as overlay
+        minZoom: 13, //constrain zoom so users can't zoom out beyond default
+        maxZoom: 17, //constrain zoom so users can only zoom in 2 levels beyond default
+        center: bounds.getCenter(),
+        layers: [Stamen_Watercolor,Stamen_TonerLabels], //watercolor is default base layer with labels as overlay
+        maxBounds: bounds
     });
+
+    var latlngs = L.rectangle(bounds).getLatLngs();
+
     var baseMaps = {
         "Watercolor": Stamen_Watercolor,
         "Satellite": Esri_WorldImagery
@@ -38,6 +45,11 @@ function createMap(){
     var overlayMaps = {
         "Labels": Stamen_TonerLabels
     };
+
+    //set max bounds
+    L.polyline(latlngs[0].concat(latlngs[0][0])).addTo(map);
+
+    map.setMaxBounds(bounds);	
 
     //add layer control to the map
     L.control.layers(baseMaps, overlayMaps).addTo(map);
