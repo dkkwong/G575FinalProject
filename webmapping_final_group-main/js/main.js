@@ -8,7 +8,7 @@ function createMap(){
         attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
         subdomains: 'abcd',
         minZoom: 1,
-        maxZoom: 16,
+        maxZoom: 18,
         ext: 'jpg'
     })
     var Esri_WorldImagery = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
@@ -29,7 +29,7 @@ function createMap(){
         center: [43.075, -89.41],
         zoom: 13,
         minZoom: 13, //constrain zoom so users can't zoom out beyond default
-        maxZoom: 16, //constrain zoom so users can only zoom in 2 levels beyond default
+        maxZoom: 17, //constrain zoom so users can only zoom in 2 levels beyond default
         layers: [Stamen_Watercolor,Stamen_TonerLabels] //watercolor is default base layer with labels as overlay
     });
     var baseMaps = {
