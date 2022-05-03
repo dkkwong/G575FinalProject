@@ -28,6 +28,7 @@ function createMap(){
     map = L.map('map', {
         center: [43.075, -89.41],
         zoom: 13,
+        minZoom: 13,
         layers: [Stamen_Watercolor,Stamen_TonerLabels] //watercolor is default base layer with labels as overlay
     });
     var baseMaps = {
