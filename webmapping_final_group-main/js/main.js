@@ -30,8 +30,13 @@ function createMap(){
         zoom: 13,
         minZoom: 13, //constrain zoom so users can't zoom out beyond default
         maxZoom: 17, //constrain zoom so users can only zoom in 2 levels beyond default
-        layers: [Stamen_Watercolor,Stamen_TonerLabels] //watercolor is default base layer with labels as overlay
+        center: bounds.getCenter(),
+        layers: [Stamen_Watercolor,Stamen_TonerLabels], //watercolor is default base layer with labels as overlay
+        maxBounds: bounds
     });
+
+    var latlngs = L.rectangle(bounds).getLatLngs();
+
     var baseMaps = {
         "Watercolor": Stamen_Watercolor,
         "Satellite": Esri_WorldImagery
@@ -40,6 +45,11 @@ function createMap(){
     var overlayMaps = {
         "Labels": Stamen_TonerLabels
     };
+
+    //set max bounds
+    L.polyline(latlngs[0].concat(latlngs[0][0])).addTo(map);
+
+    map.setMaxBounds(bounds);	
 
     //add layer control to the map
     L.control.layers(baseMaps, overlayMaps).addTo(map);
