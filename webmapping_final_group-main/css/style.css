@@ -21,12 +21,32 @@
 #menu li{
     display:none;
   }
+  /*dropdown menu style*/
 #dropdown{
     width:240px;
     height:30px;
     position:absolute;
     top:180px;
 }
+#material{
+    width:200px;
+}
+.material-option{
+    fill-opacity: 100%;
+}
+#neighborhood{
+    width:200px;
+}
+.neighborhood-option{
+    fill-opacity: 100%;
+}
+#artist{
+    width:200px;
+}
+.artist-option{
+    fill-opacity: 100%;
+}
+
 #feedback{
     width:240px;
     height:30px;

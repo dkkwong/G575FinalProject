@@ -86,7 +86,7 @@ function getData(){
 
             createSequenceControls();
             createSearchBar(data);
-            createDropdown();
+            createDropdown(data);
             createFeedback();
         })
         
@@ -179,16 +179,36 @@ function runSearch() {
     })
 }
 
-function createDropdown(){
+function createDropdown(data){
     material=document.querySelector('#dropdown')
     material.insertAdjacentHTML('beforeend','<select name="material" id="material"><option value="" selected="selected">Choose Material</option></select>')
+    
+    for (var i=0; i<data.length; i++){
+         var material = data[i].properties.Material
+         //create list of materials
+         document.querySelector('#material').insertAdjacentHTML('beforeend','<option class="material-option">' + material + '</option>')
+        
+    }
 
     neighborhood=document.querySelector('#dropdown')
-    neighborhood.insertAdjacentHTML('beforeend','<select name="Neighborhood" id="Neighborhood"><option value="" selected="selected">Choose Neighborhood</option></select>')
+    neighborhood.insertAdjacentHTML('beforeend','<select name="neighborhood" id="neighborhood"><option value="" selected="selected">Choose Neighborhood</option></select>')
+
+    for (var i=0; i<data.length; i++){
+        var neighborhood = data[i].properties.Neighborhood
+        //create list of neighborhoods
+        document.querySelector('#neighborhood').insertAdjacentHTML('beforeend','<option class="neighborhood-option">' + neighborhood + '</option>')
+       
+   }
 
     artist=document.querySelector('#dropdown')
     artist.insertAdjacentHTML('beforeend','<select name="artist" id="artist"><option value="" selected="selected">Choose Artist</option></select>')
 
+    for (var i=0; i<data.length; i++){
+        var artist = data[i].properties.Artist
+        //create list of artists
+        document.querySelector('#artist').insertAdjacentHTML('beforeend','<option class="artist-option">' + artist+ '</option>')
+       
+   }
 };
 
 function createFeedback(){
