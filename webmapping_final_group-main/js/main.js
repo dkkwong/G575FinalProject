@@ -99,11 +99,19 @@ function processData(data){
 function onEachFeature(feature, layer) {
     // create html string with all properties
     var popupContent = "";
+    var links = "";
+    var formattedLinks = "";
     if (feature.properties) {
         //loop to add feature property names and values to html string
         for (var property in feature.properties){
+            if(property=="Link"){
+                links += feature.properties[property];
+                formattedLinks += "<a href=" + "'" + links + "' target='_blank'>Click here to learn more!" + "</a>";
+                //console.log(formattedLinkz)
+                popupContent += "<p><strong>" + property + ":</strong> " + formattedLinks + "</p>";                
+            }else{
             popupContent += "<p>" + property + ": " + feature.properties[property] + "</p>";
-        }
+        }}
         layer.bindPopup(popupContent);
     };
 };
