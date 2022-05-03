@@ -1,6 +1,40 @@
+/*-----Panel Elements-----*/
+#title{
+    width:100%;
+    height:60px;
+    background-color: rgb(74, 74, 74);
+}
+#sequence{
+    width:240px;
+    height:20px;
+    background-color: black;   
+    position:absolute;
+    top:300px;
+    
+}
+#search{
+    width:240px;
+    height:20px;
+    position:absolute;
+    top:80px;
+}
+#dropdown{
+    width:240px;
+    height:30px;
+    position:absolute;
+    top:180px;
+}
+#panel{
+    width:16%;
+    height:700px;
+    display:inline-block;
+    background-color: rgb(210, 203, 203);
+    outline-color:black;
+}
+/*---------Map Elements-------*/
 #map {
-    height: 600px;
-    width: 100%;
+    height: 700px;
+    width: 82%;
     display: inline-block;
 }
 
@@ -8,8 +42,4 @@
 }
 
 .leaflet-control-layers{background-color: rgb(236, 226, 226);
-}
-
-.sequence-control-container{
-    height:20px;
 }

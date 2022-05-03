@@ -67,6 +67,8 @@ function getData(){
             console.log(attributes);
 
             createSequenceControls();
+            createSearchBar();
+            createDropdown();
         })
         
 };
@@ -96,30 +98,27 @@ function onEachFeature(feature, layer) {
 };
 
 function createSequenceControls(){
-    var SequenceControl = L.Control.extend({
-        options: {
-            position: 'bottomleft'
-        },
+    var sequence = document.querySelector('#sequence')
+    //create slider
+    sequence.insertAdjacentHTML('beforeend', '<input class="range-slider" type="range">')
 
-        onAdd: function () {
-            // create the control container div with a particular class name
-            var container = L.DomUtil.create('div', 'sequence-control-container');
-
-            //create range input element (slider)
-            container.insertAdjacentHTML('beforeend', '<input class="range-slider" type="range">')
-
-            //add skip buttons
-            container.insertAdjacentHTML('afterbegin', '<button class="step" id="reverse" title="Reverse">Reverse</button>'); 
-            container.insertAdjacentHTML('beforeend', '<button class="step" id="forward" title="Forward">Forward</button>');
-
-             //disable any mouse event listeners for the container
-             L.DomEvent.disableClickPropagation(container);
-
-            return container;
-        }
-    });
-    //add listeners 
-    map.addControl(new SequenceControl());
+    //add skip buttons
+    sequence.insertAdjacentHTML('afterbegin', '<button class="step" id="reverse" title="Reverse">R</button>'); 
+    sequence.insertAdjacentHTML('beforeend', '<button class="step" id="forward" title="Forward">F</button>');
 };
+
+function createSearchBar(){
+    search=document.querySelector('#search')
+    search.insertAdjacentHTML('beforeend','<input type="text" placeholder="Search"></input>')
+};
+
+function createDropdown(){
+    material=document.querySelector('#dropdown')
+    material.insertAdjacentHTML('beforeend','<select name="material" id="material"><option value="" selected="selected">Choose Material</option></select>')
+
+    neighborhood=document.querySelector('#dropdown')
+    neighborhood.insertAdjacentHTML('beforeend','<select name="Neighborhood" id="Neighborhood"><option value="" selected="selected">Choose Neighborhood</option></select>')
+};
+
 
 document.addEventListener('DOMContentLoaded',createMap)
