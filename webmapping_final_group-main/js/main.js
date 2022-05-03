@@ -165,7 +165,13 @@ function runSearch() {
             li[i].style.display = "none";
         }
     }
-    document.querySelector('#menu').addEventListener('click',li.style.display = "none")
+    document.querySelector('#menu').addEventListener('click',function(event){
+        var menu = document.querySelector('#menu')
+        while (menu.hasChildNodes()){
+            menu.removeChild(event.target.firstChild)
+        }
+    
+    })
 }
 
 function createDropdown(){
