@@ -114,11 +114,15 @@ function onEachFeature(feature, layer) {
         for (var property in feature.properties){
             if(property=="Link"){
                 links += feature.properties[property];
+                console.log(links)
+                if(links == "<empty string>"){
+                    continue
+                }else{
                 formattedLinks += "<a href=" + "'" + links + "' target='_blank'>Click here to learn more!" + "</a>";
-                //console.log(formattedLinkz)
-                popupContent += "<p><strong>" + property + ":</strong> " + formattedLinks + "</p>";                
-            }else{
-            popupContent += "<p>" + property + ": " + feature.properties[property] + "</p>";
+                //console.log(formattedLinks)
+                popupContent += "<p><b>" + property + ": </b> " + formattedLinks + "</p>";                
+            }}else{
+                popupContent += "<p><b>" + property + ": </b> " + feature.properties[property] + "</p>";
         }}
         layer.bindPopup(popupContent);
     };
