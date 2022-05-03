@@ -115,7 +115,7 @@ function onEachFeature(feature, layer) {
             if(property=="Link"){
                 links += feature.properties[property];
                 console.log(links)
-                if(links == "<empty string>"){
+                if(!links){
                     continue
                 }else{
                 formattedLinks += "<a href=" + "'" + links + "' target='_blank'>Click here to learn more!" + "</a>";
