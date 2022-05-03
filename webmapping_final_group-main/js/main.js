@@ -180,6 +180,10 @@ function createDropdown(){
 
     neighborhood=document.querySelector('#dropdown')
     neighborhood.insertAdjacentHTML('beforeend','<select name="Neighborhood" id="Neighborhood"><option value="" selected="selected">Choose Neighborhood</option></select>')
+
+    artist=document.querySelector('#dropdown')
+    artist.insertAdjacentHTML('beforeend','<select name="artist" id="artist"><option value="" selected="selected">Choose Artist</option></select>')
+
 };
 
 function createFeedback(){
