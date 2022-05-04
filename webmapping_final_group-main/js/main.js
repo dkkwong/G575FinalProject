@@ -111,6 +111,7 @@ function onEachFeature(feature, layer) {
     var popupContent = "";
     var links = "";
     var formattedLinks = "";
+    
     if (feature.properties) {
         //loop to add feature property names and values to html string
         for (var property in feature.properties){
