@@ -10,15 +10,12 @@
 #sequence{
     width:240px;
     height:60px;   
-    position:absolute;
-    top:300px;
-    
+    position:relative;
 }
 #search{
     width:240px;
     height:20px;
-    position:absolute;
-    top:80px;
+    position:relative;
 }
 #menu li{
     width:240px;
@@ -28,8 +25,8 @@
 #dropdown{
     width:240px;
     height:30px;
-    position:absolute;
-    top:180px;
+    position:relative;
+    top:80px;
 }
 #material{
     width:200px;
@@ -52,14 +49,12 @@
 #reset{
     width:240px;
     height:30px;
-    position:absolute;
-    top:250px;
+    position:relative;
 }
 #feedback-container{
     width:240px;
     height:30px;
-    position:absolute;
-    top:380px;
+    position:relative;
 }
 #feedbackForm {
     max-width: 300px;
@@ -73,10 +68,17 @@
     display:inline-block;
     background-color: rgb(210, 203, 203);
     outline-color:black;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+#subtitle{
+    position: relative;
 }
 
 .responsive{
-    width:16%;
+    width:100%;
     height:auto;
 }
 /*---------Map Elements-------*/
@@ -84,6 +86,7 @@
     height: 700px;
     width: 82%;
     display: inline-block;
+    margin-left:16%;
 }
 
 .leaflet-popup-content{
