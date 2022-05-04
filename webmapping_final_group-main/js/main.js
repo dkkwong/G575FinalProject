@@ -253,7 +253,11 @@ function createDropdown(data){
 function createReset(){
     feedback=document.querySelector('#reset')
     //add button
-    feedback.insertAdjacentHTML('beforeend','<button class="btn reset">Reset</button>')
+    feedback.insertAdjacentHTML('beforeend','<input type="reset" value="Reset" onClick="reset()"></input>')
+}
+//function called when reset button is clicked
+function reset(){
+    document.querySelector("#dropdown").reset();
 }
 
 function createFeedback(){
@@ -261,5 +265,6 @@ function createFeedback(){
     //add button
     feedback.insertAdjacentHTML('beforeend','<button class="btn feedback">Feedback</button>')
 }
+
 
 document.addEventListener('DOMContentLoaded',createMap)
