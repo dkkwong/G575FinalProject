@@ -1,4 +1,7 @@
 var map;
+var neighborhoodBoudaries,
+baseMaps,
+overlayMaps
 //function to instantiate the Leaflet map
 function createMap(){
     
@@ -39,16 +42,6 @@ function createMap(){
 //    var boundaries = L.geoJSON().addTo(map);
 //    boundaries.addData("data/our_boundaries.geojson");
 
-    var baseMaps = {
-        "Watercolor": Stamen_Watercolor,
-        "Satellite": Esri_WorldImagery
-    };
-    var overlayMaps = {
-        "Labels": Stamen_TonerLabels
-    };
-
-    //add layer control to the map
-    L.control.layers(baseMaps, overlayMaps,{ position: 'topright' }).addTo(map);
 
     //scale bar
     L.control.scale({ position: 'bottomright' }).addTo(map);
@@ -56,8 +49,18 @@ function createMap(){
     //zoom buttons
     //L.control.zoom({ position: 'bottomright' }).addTo(map);
     //call data function
-    getData()
+    baseMaps = {
+        "Watercolor": Stamen_Watercolor,
+        "Satellite": Esri_WorldImagery
+    };
+    overlayMaps = {
+        "Labels": Stamen_TonerLabels
+    };
     
+    getData()
+   
+    //add layer control to the map
+
 };
 
 function getData(){
@@ -67,7 +70,9 @@ function getData(){
             return response.json();
         })
         .then(function(json){
-            L.geoJson(json).addTo(map);
+            neighborhoodBoundaries= L.geoJson(json).addTo(map);
+            overlayMaps.Neighborhood = neighborhoodBoundaries;
+            L.control.layers(baseMaps, overlayMaps,{ position: 'topright' }).addTo(map);
         })
 
     fetch("data/SculptureData.geojson") //path where data is stored
@@ -111,7 +116,7 @@ function onEachFeature(feature, layer) {
     var popupContent = "";
     var links = "";
     var formattedLinks = "";
-    
+
     if (feature.properties) {
         //loop to add feature property names and values to html string
         for (var property in feature.properties){
@@ -124,12 +129,15 @@ function onEachFeature(feature, layer) {
                 formattedLinks += "<a href=" + "'" + links + "' target='_blank'>Click here to learn more!" + "</a>";
                 //console.log(formattedLinks)
                 popupContent += "<p><b>" + property + ": </b> " + formattedLinks + "</p>";                
-            }}else{
+            }}else if(property=="Photo"){
+                continue
+            
+            }else{
                 popupContent += "<p><b>" + property + ": </b> " + feature.properties[property] + "</p>";
             }
         }
         //Add image links
-        popupContent += '<img class="sculpturePhoto" src="img/sculpturepics/'+feature.properties.Photo+'" width="350px">'
+        popupContent += '<img class="sculpturePhoto" src="img/sculpturepics/'+feature.properties.Photo+'" width="300px height="350px">'
         layer.bindPopup(popupContent);
        
         
@@ -192,6 +200,7 @@ function createSearchBar(data){
 };
 //function is called when you type into the search bar
 function runSearch() {
+    var value = document.querySelector('#Search').value;
     // Declare variables
     var input = document.getElementById("Search");
     var filter = input.value.toUpperCase();
@@ -207,13 +216,22 @@ function runSearch() {
         }
     }
     //event listener to hide search menu
-    document.querySelector('#menu').addEventListener('mouseout',function(event){
+    document.querySelector('#menu').addEventListener('click',function(event){
         var menu = document.querySelector('#menu')
-        while (menu.hasChildNodes()){
+        document.querySelectorAll(".name").forEach(function(item){
+            item.style.display = "none";
+        })
+        /*while (menu.hasChildNodes()){
             menu.removeChild(menu.firstChild)   
-        }
-    
+        }*/
+
     })
+
+    if (!value){
+        document.querySelectorAll(".name").forEach(function(item){
+            item.style.display = "none";
+        })
+    }
 }
 
 function createDropdown(data){
@@ -224,13 +242,16 @@ function createDropdown(data){
     for (var i=0; i<data.length; i++){
         //create  list of materials
          var material = data[i].properties.Material
-         materialList.push(material)
+         if (!materialList.includes(material))
+            materialList.push(material)
         //create list of neighborhoods
          var neighborhood = data[i].properties.Neighborhood
-         neighborhoodList.push(neighborhood)
+         if (!neighborhoodList.includes(neighborhood))
+            neighborhoodList.push(neighborhood)
         //create list of artists
          var artist = data[i].properties.Artist
-         artistList.push(artist)
+         if (!artistList.includes(artist))
+            artistList.push(artist)
     }
     //add dropdown menu
     material=document.querySelector('#dropdown')
