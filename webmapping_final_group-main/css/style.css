@@ -52,13 +52,19 @@
     width:240px;
     height:30px;
     position:absolute;
-    top:340px;
+    top:250px;
 }
-#feedback{
+#feedback-container{
     width:240px;
     height:30px;
     position:absolute;
     top:380px;
+}
+#feedbackForm {
+    max-width: 300px;
+    padding: 10px;
+    background-color: white;
+    display: none;
 }
 #panel{
     width:16%;

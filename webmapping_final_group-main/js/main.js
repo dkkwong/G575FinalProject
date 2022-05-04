@@ -158,7 +158,6 @@ function createSequenceControls(){
             };
             //update slider
         document.querySelector('.range-slider').value = index
-        console.log(index)
         })
     })
     // input listener for slider
@@ -261,10 +260,30 @@ function reset(){
 }
 
 function createFeedback(){
-    feedback=document.querySelector('#feedback')
+    feedback=document.querySelector('#feedback-container')
     //add button
-    feedback.insertAdjacentHTML('beforeend','<button class="btn feedback">Feedback</button>')
+    feedback.insertAdjacentHTML('beforeend','<button class="feedbackButton" onclick="toggleFeedback()">Feedback</button>')
+
+    feedbackForm=document.querySelector('#feedbackForm')
+    //add form fields
+    //still need an image field
+    feedbackForm.insertAdjacentHTML('beforeend','<input type="text" placeholder="Name" name="name"></input>')
+    feedbackForm.insertAdjacentHTML('beforeend','<input type="text" placeholder="Enter Email" name="email"></input>')
+    feedbackForm.insertAdjacentHTML('beforeend','<input type="text" placeholder="Name of Sculpture" name="sculptureName"></input>')
+    feedbackForm.insertAdjacentHTML('beforeend','<input type="text" placeholder="Location" name="location"></input>')
+    feedbackForm.insertAdjacentHTML('beforeend','<input type="text" placeholder="Year Built" name="year"></input>')
+    feedbackForm.insertAdjacentHTML('beforeend','<input type="text" placeholder="Artist" name="artist"></input>')
+    feedbackForm.insertAdjacentHTML('beforeend','<input type="text" placeholder="Material Type" name="material"></input>')
+    feedbackForm.insertAdjacentHTML('beforeend','<input type="text" placeholder="Additional Info" name="other"></input>')
 }
 
+function toggleFeedback(){
+    //show or hide the feedback menu
+    if(document.querySelector("#feedbackForm").style.display = "none"){
+        document.querySelector("#feedbackForm").style.display = "block"
+    }else if(document.querySelector("#feedbackForm").style.display = "block"){
+        document.querySelector("#feedbackForm").style.display = "none"
+    }
+}
 
 document.addEventListener('DOMContentLoaded',createMap)
