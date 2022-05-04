@@ -125,10 +125,13 @@ function onEachFeature(feature, layer) {
                 popupContent += "<p><b>" + property + ": </b> " + formattedLinks + "</p>";                
             }}else{
                 popupContent += "<p><b>" + property + ": </b> " + feature.properties[property] + "</p>";
-        }}
+            }
+        }
+        //Add image links
+        popupContent += '<img class="sculpturePhoto" src="img/sculpturepics/'+feature.properties.Photo+'" width="350px">'
         layer.bindPopup(popupContent);
-       console.log(typeof(feature.properties.Photo))
-    
+       
+        
     };
 };
 
