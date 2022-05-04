@@ -48,7 +48,7 @@ function createMap(){
     };
 
     //add layer control to the map
-    L.control.layers(baseMaps, overlayMaps,{ position: 'bottomleft' }).addTo(map);
+    L.control.layers(baseMaps, overlayMaps,{ position: 'topright' }).addTo(map);
 
     //scale bar
     L.control.scale({ position: 'bottomright' }).addTo(map);
