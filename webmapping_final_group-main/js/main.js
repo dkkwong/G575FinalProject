@@ -276,10 +276,11 @@ function createFeedback(){
     feedbackForm.insertAdjacentHTML('beforeend','<input type="text" placeholder="Artist" name="artist"></input>')
     feedbackForm.insertAdjacentHTML('beforeend','<input type="text" placeholder="Material Type" name="material"></input>')
     feedbackForm.insertAdjacentHTML('beforeend','<input type="text" placeholder="Additional Info" name="other"></input>')
-    //add submit button
-    feedbackForm.insertAdjacentHTML('beforeend','<button type="submit" class="submit">Submit</button>')
     //add reset button
     feedbackForm.insertAdjacentHTML('beforeend','<button type="reset" class="reset">Reset</button>')
+    //add submit button
+    feedbackForm.insertAdjacentHTML('beforeend','<button type="submit" class="submit">Submit</button>')
+    
 }
 function showFeedback(){
     //function called when feedback button clicked, shows the feedback form
