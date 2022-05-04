@@ -94,8 +94,8 @@
 }
 /*neighborhood boundaries*/
 .leaflet-interactive{
-    fill-opacity: 0%;
-    stroke-opacity: 0%
+    fill-opacity: 10%;
+    stroke-opacity: 100%
 }
 /* scale bar*/
 .leaflet-control-scale-line{fill-opacity: 10%;

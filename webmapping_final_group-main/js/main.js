@@ -1,4 +1,7 @@
 var map;
+var neighborhoodBoudaries,
+baseMaps,
+overlayMaps
 //function to instantiate the Leaflet map
 function createMap(){
     
@@ -39,16 +42,6 @@ function createMap(){
 //    var boundaries = L.geoJSON().addTo(map);
 //    boundaries.addData("data/our_boundaries.geojson");
 
-    var baseMaps = {
-        "Watercolor": Stamen_Watercolor,
-        "Satellite": Esri_WorldImagery
-    };
-    var overlayMaps = {
-        "Labels": Stamen_TonerLabels
-    };
-
-    //add layer control to the map
-    L.control.layers(baseMaps, overlayMaps,{ position: 'topright' }).addTo(map);
 
     //scale bar
     L.control.scale({ position: 'bottomright' }).addTo(map);
@@ -56,8 +49,18 @@ function createMap(){
     //zoom buttons
     //L.control.zoom({ position: 'bottomright' }).addTo(map);
     //call data function
-    getData()
+    baseMaps = {
+        "Watercolor": Stamen_Watercolor,
+        "Satellite": Esri_WorldImagery
+    };
+    overlayMaps = {
+        "Labels": Stamen_TonerLabels
+    };
     
+    getData()
+   
+    //add layer control to the map
+
 };
 
 function getData(){
@@ -67,7 +70,9 @@ function getData(){
             return response.json();
         })
         .then(function(json){
-            L.geoJson(json).addTo(map);
+            neighborhoodBoundaries= L.geoJson(json).addTo(map);
+            overlayMaps.Neighborhood = neighborhoodBoundaries;
+            L.control.layers(baseMaps, overlayMaps,{ position: 'topright' }).addTo(map);
         })
 
     fetch("data/SculptureData.geojson") //path where data is stored
