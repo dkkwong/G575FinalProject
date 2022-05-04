@@ -74,6 +74,11 @@
     background-color: rgb(210, 203, 203);
     outline-color:black;
 }
+
+.responsive{
+    width:16%;
+    height:auto;
+}
 /*---------Map Elements-------*/
 #map {
     height: 700px;
