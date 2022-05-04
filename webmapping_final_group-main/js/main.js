@@ -141,6 +141,8 @@ function createSequenceControls(){
     //add skip buttons
     sequence.insertAdjacentHTML('afterbegin', '<button class="step" id="reverse" title="Reverse">-</button>'); 
     sequence.insertAdjacentHTML('beforeend', '<button class="step" id="forward" title="Forward">+</button>');
+    //add text
+    sequence.insertAdjacentHTML('beforeend','<div id="year">Select Year</div>')
 
     document.querySelector(".range-slider").max = 2022;
     document.querySelector(".range-slider").min = 1892;
@@ -263,7 +265,7 @@ function reset(){
 function createFeedback(){
     feedback=document.querySelector('#feedback-container')
     //add button
-    feedback.insertAdjacentHTML('beforeend','<button class="feedbackButton" onclick="showFeedback()">Feedback</button>')
+    feedback.insertAdjacentHTML('beforeend','<button id="feedbackButton" onclick="showFeedback()">Feedback</button>')
 
     feedbackForm=document.querySelector('#feedbackForm')
     //add form fields
@@ -285,6 +287,13 @@ function createFeedback(){
 function showFeedback(){
     //function called when feedback button clicked, shows the feedback form
     document.querySelector("#feedbackForm").style.display = "block"
+    //change feedback button to hide 
+    document.querySelector('#feedbackButton').innerText="Hide"
+    //when clicked, hide the form
+    document.querySelector('#feedbackButton').addEventListener('click',function(event){
+        document.querySelector("#feedbackForm").style.display = "none"
+        document.querySelector('#feedbackButton').innerText="Feedback"
+    })
 }
 
 
