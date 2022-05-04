@@ -118,7 +118,7 @@ function onEachFeature(feature, layer) {
         //loop to add feature property names and values to html string
         for (var property in feature.properties){
             if(property=="Link"){
-                //links += feature.properties[property];
+                links += feature.properties[property];
                 //console.log(links)
                 if(!links){
                     continue
