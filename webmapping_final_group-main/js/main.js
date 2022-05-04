@@ -71,7 +71,7 @@ function getData(){
             }).addTo(map);
         })
 
-    fetch("data/sculpture_data_updated.geojson") //path where data is stored
+    fetch("data/sculpture_data_thirdgo.geojson") //path where data is stored
         .then(function(response){
             return response.json();
         })
