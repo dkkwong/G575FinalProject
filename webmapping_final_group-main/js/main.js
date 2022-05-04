@@ -111,7 +111,7 @@ function onEachFeature(feature, layer) {
     var popupContent = "";
     var links = "";
     var formattedLinks = "";
-    
+
     if (feature.properties) {
         //loop to add feature property names and values to html string
         for (var property in feature.properties){
@@ -124,7 +124,10 @@ function onEachFeature(feature, layer) {
                 formattedLinks += "<a href=" + "'" + links + "' target='_blank'>Click here to learn more!" + "</a>";
                 //console.log(formattedLinks)
                 popupContent += "<p><b>" + property + ": </b> " + formattedLinks + "</p>";                
-            }}else{
+            }}else if(property=="Photo"){
+                continue
+            
+            }else{
                 popupContent += "<p><b>" + property + ": </b> " + feature.properties[property] + "</p>";
             }
         }
