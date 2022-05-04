@@ -8,7 +8,7 @@ function createMap(){
         attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
         subdomains: 'abcd',
         minZoom: 1,
-        maxZoom: 18,
+        maxZoom: 20,
         ext: 'jpg'
     })
     var Esri_WorldImagery = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
@@ -48,12 +48,13 @@ function createMap(){
     };
 
     //add layer control to the map
-    L.control.layers(baseMaps, overlayMaps).addTo(map);
+    L.control.layers(baseMaps, overlayMaps,{ position: 'bottomleft' }).addTo(map);
 
     //scale bar
-    L.control.scale().addTo(map);
+    L.control.scale({ position: 'bottomright' }).addTo(map);
         
-
+    //zoom buttons
+    //L.control.zoom({ position: 'bottomright' }).addTo(map);
     //call data function
     getData()
     

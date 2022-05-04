@@ -21,6 +21,7 @@
     top:80px;
 }
 #menu li{
+    width:240px;
     display:none;
   }
   /*dropdown menu style*/
@@ -63,7 +64,7 @@
 #feedbackForm {
     max-width: 300px;
     padding: 10px;
-    background-color: white;
+    background-color: rgb(176, 176, 176);
     display: none;
 }
 #panel{
