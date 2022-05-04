@@ -36,13 +36,13 @@ function createMap(){
         maxBounds: bounds,
         layers: [Stamen_Watercolor,Stamen_TonerLabels], //watercolor is default base layer with labels as overlay
     });
-
+//    var boundaries = L.geoJSON().addTo(map);
+//    boundaries.addData("data/our_boundaries.geojson");
 
     var baseMaps = {
         "Watercolor": Stamen_Watercolor,
         "Satellite": Esri_WorldImagery
     };
-    
     var overlayMaps = {
         "Labels": Stamen_TonerLabels
     };
@@ -67,9 +67,7 @@ function getData(){
             return response.json();
         })
         .then(function(json){
-            L.geoJson(json,{
-                onEachFeature: onEachFeature //bind pop-up
-            }).addTo(map);
+            L.geoJson(json).addTo(map);
         })
 
     fetch("data/SculptureData.geojson") //path where data is stored
@@ -93,8 +91,7 @@ function getData(){
             createReset();
             createFeedback();
             
-        })
-        
+        })      
 };
 
 function processData(data){
@@ -131,6 +128,8 @@ function onEachFeature(feature, layer) {
                 popupContent += "<p><b>" + property + ": </b> " + feature.properties[property] + "</p>";
         }}
         layer.bindPopup(popupContent);
+       console.log(typeof(feature.properties.Photo))
+    
     };
 };
 
