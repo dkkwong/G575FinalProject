@@ -129,7 +129,7 @@ function onEachFeature(feature, layer) {
             }
         }
         //Add image links
-        popupContent += '<img class="sculpturePhoto" src="img/sculpturepics/'+feature.properties.Photo+'" width="350px">'
+        popupContent += '<img class="sculpturePhoto" src="img/sculpturepics/'+feature.properties.Photo+'" width="300px height="350px">'
         layer.bindPopup(popupContent);
        
         
@@ -192,6 +192,7 @@ function createSearchBar(data){
 };
 //function is called when you type into the search bar
 function runSearch() {
+    var value = document.querySelector('#Search').value;
     // Declare variables
     var input = document.getElementById("Search");
     var filter = input.value.toUpperCase();
@@ -207,13 +208,22 @@ function runSearch() {
         }
     }
     //event listener to hide search menu
-    document.querySelector('#menu').addEventListener('mouseout',function(event){
+    document.querySelector('#menu').addEventListener('click',function(event){
         var menu = document.querySelector('#menu')
-        while (menu.hasChildNodes()){
+        document.querySelectorAll(".name").forEach(function(item){
+            item.style.display = "none";
+        })
+        /*while (menu.hasChildNodes()){
             menu.removeChild(menu.firstChild)   
-        }
-    
+        }*/
+
     })
+
+    if (!value){
+        document.querySelectorAll(".name").forEach(function(item){
+            item.style.display = "none";
+        })
+    }
 }
 
 function createDropdown(data){
@@ -224,13 +234,16 @@ function createDropdown(data){
     for (var i=0; i<data.length; i++){
         //create  list of materials
          var material = data[i].properties.Material
-         materialList.push(material)
+         if (!materialList.includes(material))
+            materialList.push(material)
         //create list of neighborhoods
          var neighborhood = data[i].properties.Neighborhood
-         neighborhoodList.push(neighborhood)
+         if (!neighborhoodList.includes(neighborhood))
+            neighborhoodList.push(neighborhood)
         //create list of artists
          var artist = data[i].properties.Artist
-         artistList.push(artist)
+         if (!artistList.includes(artist))
+            artistList.push(artist)
     }
     //add dropdown menu
     material=document.querySelector('#dropdown')
