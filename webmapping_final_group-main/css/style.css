@@ -7,6 +7,12 @@
 #logo{
     position:absolute;
 }
+#subtitle{
+    position: relative;
+}
+#subtitle p{
+    position:relative;
+}
 #sequence{
     width:240px;
     height:60px;   
@@ -26,7 +32,6 @@
     width:240px;
     height:30px;
     position:relative;
-    top:80px;
 }
 #material{
     width:200px;
@@ -73,9 +78,6 @@
     top: 0;
 }
 
-#subtitle{
-    position: relative;
-}
 
 .responsive{
     width:100%;
