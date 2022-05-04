@@ -262,7 +262,7 @@ function reset(){
 function createFeedback(){
     feedback=document.querySelector('#feedback-container')
     //add button
-    feedback.insertAdjacentHTML('beforeend','<button class="feedbackButton" onclick="toggleFeedback()">Feedback</button>')
+    feedback.insertAdjacentHTML('beforeend','<button class="feedbackButton" onclick="showFeedback()">Feedback</button>')
 
     feedbackForm=document.querySelector('#feedbackForm')
     //add form fields
@@ -275,15 +275,15 @@ function createFeedback(){
     feedbackForm.insertAdjacentHTML('beforeend','<input type="text" placeholder="Artist" name="artist"></input>')
     feedbackForm.insertAdjacentHTML('beforeend','<input type="text" placeholder="Material Type" name="material"></input>')
     feedbackForm.insertAdjacentHTML('beforeend','<input type="text" placeholder="Additional Info" name="other"></input>')
+    //add submit button
+    feedbackForm.insertAdjacentHTML('beforeend','<button type="submit" class="submit">Submit</button>')
+    //add reset button
+    feedbackForm.insertAdjacentHTML('beforeend','<button type="reset" class="reset">Reset</button>')
+}
+function showFeedback(){
+    //function called when feedback button clicked, shows the feedback form
+    document.querySelector("#feedbackForm").style.display = "block"
 }
 
-function toggleFeedback(){
-    //show or hide the feedback menu
-    if(document.querySelector("#feedbackForm").style.display = "none"){
-        document.querySelector("#feedbackForm").style.display = "block"
-    }else if(document.querySelector("#feedbackForm").style.display = "block"){
-        document.querySelector("#feedbackForm").style.display = "none"
-    }
-}
 
 document.addEventListener('DOMContentLoaded',createMap)
