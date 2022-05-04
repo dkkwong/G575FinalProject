@@ -39,16 +39,11 @@ function createMap(){
         maxBounds: bounds,
         layers: [Stamen_Watercolor,Stamen_TonerLabels], //watercolor is default base layer with labels as overlay
     });
-//    var boundaries = L.geoJSON().addTo(map);
-//    boundaries.addData("data/our_boundaries.geojson");
-
 
     //scale bar
     L.control.scale({ position: 'bottomright' }).addTo(map);
         
-    //zoom buttons
-    //L.control.zoom({ position: 'bottomright' }).addTo(map);
-    //call data function
+    
     baseMaps = {
         "Watercolor": Stamen_Watercolor,
         "Satellite": Esri_WorldImagery
@@ -59,7 +54,7 @@ function createMap(){
     
     getData()
    
-    //add layer control to the map
+
 
 };
 
@@ -70,8 +65,9 @@ function getData(){
             return response.json();
         })
         .then(function(json){
-            neighborhoodBoundaries= L.geoJson(json).addTo(map);
+            neighborhoodBoundaries= L.geoJson(json);
             overlayMaps.Neighborhood = neighborhoodBoundaries;
+            //add layer control
             L.control.layers(baseMaps, overlayMaps,{ position: 'topright' }).addTo(map);
         })
 
