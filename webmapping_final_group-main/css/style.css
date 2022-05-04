@@ -4,10 +4,12 @@
     height:60px;
     background-color: rgb(74, 74, 74);
 }
+#logo{
+    position:absolute;
+}
 #sequence{
     width:240px;
-    height:20px;
-    background-color: black;   
+    height:20px;   
     position:absolute;
     top:300px;
     

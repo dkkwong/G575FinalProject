@@ -23,7 +23,7 @@ function createMap(){
         maxZoom: 20,
         ext: 'png'
     })
-    //global vars to hold bounds
+    //vars to hold bounds
     var southWest = [43.016578, -89.492069],
         northEast = [43.167417, -89.296058],
         bounds = L.latLngBounds(southWest,northEast)
@@ -71,7 +71,7 @@ function getData(){
             }).addTo(map);
         })
 
-    fetch("data/sculpture_data_thirdgo.geojson") //path where data is stored
+    fetch("data/SculptureData.geojson") //path where data is stored
         .then(function(response){
             return response.json();
         })
@@ -173,6 +173,7 @@ function createSequenceControls(){
 
 function createSearchBar(data){
     search=document.querySelector('#search')
+    //add button
     search.insertAdjacentHTML('beforeend','<input type="text" id="Search" onkeyup="runSearch()" placeholder="Search"></input>')
 
     search.insertAdjacentHTML('beforeend','<ul id=menu></ul>') //create unordered list
@@ -211,43 +212,53 @@ function runSearch() {
 }
 
 function createDropdown(data){
+ 
+    var materialList=[];
+    var neighborhoodList=[];
+    var artistList=[];
+    for (var i=0; i<data.length; i++){
+        //create  list of materials
+         var material = data[i].properties.Material
+         materialList.push(material)
+        //create list of neighborhoods
+         var neighborhood = data[i].properties.Neighborhood
+         neighborhoodList.push(neighborhood)
+        //create list of artists
+         var artist = data[i].properties.Artist
+         artistList.push(artist)
+    }
+    //add dropdown menu
     material=document.querySelector('#dropdown')
     material.insertAdjacentHTML('beforeend','<select name="material" id="material"><option value="" selected="selected">Choose Material</option></select>')
     
-    for (var i=0; i<data.length; i++){
-         var material = data[i].properties.Material
-         //create list of materials
-         document.querySelector('#material').insertAdjacentHTML('beforeend','<option class="material-option">' + material + '</option>')
-        
+    for (i in materialList){
+    document.querySelector('#material').insertAdjacentHTML('beforeend','<option class="material-option">' + materialList[i] + '</option>')
     }
-
+         
     neighborhood=document.querySelector('#dropdown')
     neighborhood.insertAdjacentHTML('beforeend','<select name="neighborhood" id="neighborhood"><option value="" selected="selected">Choose Neighborhood</option></select>')
 
-    for (var i=0; i<data.length; i++){
-        var neighborhood = data[i].properties.Neighborhood
-        //create list of neighborhoods
-        document.querySelector('#neighborhood').insertAdjacentHTML('beforeend','<option class="neighborhood-option">' + neighborhood + '</option>')
-       
+    for (i in neighborhoodList){
+        document.querySelector('#neighborhood').insertAdjacentHTML('beforeend','<option class="neighborhood-option">' + neighborhoodList[i] + '</option>')
    }
 
     artist=document.querySelector('#dropdown')
     artist.insertAdjacentHTML('beforeend','<select name="artist" id="artist"><option value="" selected="selected">Choose Artist</option></select>')
 
-    for (var i=0; i<data.length; i++){
-        var artist = data[i].properties.Artist
-        //create list of artists
-        document.querySelector('#artist').insertAdjacentHTML('beforeend','<option class="artist-option">' + artist+ '</option>')
-       
+    for (i in artistList){
+        document.querySelector('#artist').insertAdjacentHTML('beforeend','<option class="artist-option">' + artistList[i]+ '</option>')  
    }
 };
+
 function createReset(){
     feedback=document.querySelector('#reset')
+    //add button
     feedback.insertAdjacentHTML('beforeend','<button class="btn reset">Reset</button>')
 }
 
 function createFeedback(){
     feedback=document.querySelector('#feedback')
+    //add button
     feedback.insertAdjacentHTML('beforeend','<button class="btn feedback">Feedback</button>')
 }
 
