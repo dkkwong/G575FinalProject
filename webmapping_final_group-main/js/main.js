@@ -2,7 +2,8 @@
 var map,
 neighborhoodBoudaries,
 baseMaps,
-overlayMaps;
+overlayMaps,
+dataList; //variable to store data globally
 //function to instantiate the Leaflet map
 function createMap(){
     
@@ -78,11 +79,11 @@ function getData(){
         })
         .then(function(json){
             var data = json.features //create variable to contain data
-            
+            dataList=data
             L.geoJson(data, { 
                 onEachFeature: onEachFeature  //use to bind associated information to each marker as a pop-up
             }).addTo(map);
-
+            
             var attributes = processData(json); //create a list of column field names
 
 
@@ -216,9 +217,7 @@ function runSearch() {
         document.querySelectorAll(".name").forEach(function(item){
             item.style.display = "none";
         })
-
     })
-
     if (!value){
         document.querySelectorAll(".name").forEach(function(item){
             item.style.display = "none";
@@ -227,7 +226,7 @@ function runSearch() {
 }
 
 function createDropdown(data){
- 
+    
     var materialList=[];
     var neighborhoodList=[];
     var artistList=[];
@@ -250,25 +249,36 @@ function createDropdown(data){
     material.insertAdjacentHTML('beforeend','<select name="material" id="material"><option value="" selected="selected">Choose Material</option></select>')
     
     for (i in materialList){
-    document.querySelector('#material').insertAdjacentHTML('beforeend','<option class="material-option" onclick="updateMarker()">' + materialList[i] + '</option>')
+    document.querySelector('#material').insertAdjacentHTML('beforeend','<option class="material-option">' + materialList[i] + '</option>')
     }
 
     neighborhood=document.querySelector('#dropdown')
     neighborhood.insertAdjacentHTML('beforeend','<select name="neighborhood" id="neighborhood"><option value="" selected="selected">Choose Neighborhood</option></select>')
 
     for (i in neighborhoodList){
-        document.querySelector('#neighborhood').insertAdjacentHTML('beforeend','<option class="neighborhood-option" onclick="updateMarker()">' + neighborhoodList[i] + '</option>')
+        document.querySelector('#neighborhood').insertAdjacentHTML('beforeend','<option class="neighborhood-option" >' + neighborhoodList[i] + '</option>')
    }
 
     artist=document.querySelector('#dropdown')
     artist.insertAdjacentHTML('beforeend','<select name="artist" id="artist"><option value="" selected="selected">Choose Artist</option></select>')
 
     for (i in artistList){
-        document.querySelector('#artist').insertAdjacentHTML('beforeend','<option class="artist-option" onclick="updateMarker()">' + artistList[i]+ '</option>')  
+        document.querySelector('#artist').insertAdjacentHTML('beforeend','<option class="artist-option">' + artistList[i]+ '</option>')  
    }
+   //add event listener to all dropdown menu options
+    document.querySelectorAll('.material-option').forEach(function(step){
+        step.addEventListener("click", updateMarker)})
+    document.querySelectorAll('.neighborhood-option').forEach(function(step){
+        step.addEventListener("click", updateMarker)})
+    document.querySelectorAll('.artist-option').forEach(function(step){
+        step.addEventListener("click", updateMarker)})
+    
+    
 };
 //this function is called when an item in the dropdown menus is clicked
 function updateMarker(){
+    //return the current selected value
+    document.querySelector('#material').value
     //on click first hide all markers/shadows
     document.querySelectorAll(".leaflet-marker-icon").forEach(function(item){
         item.style.display = "none";
@@ -276,7 +286,13 @@ function updateMarker(){
     document.querySelectorAll(".leaflet-marker-shadow").forEach(function(item){
         item.style.display = "none";
     })
-    
+    //use _latlng as unique key for each marker
+    /*
+    map.eachLayer((layer) => {
+        if(layer['_latlng']!=undefined)
+            console.log(layer['_latlng']['lat'])
+    });
+    */
 }
 
 
@@ -288,6 +304,13 @@ function createReset(){
 //function called when reset button is clicked
 function reset(){
     document.querySelector("#dropdown").reset();
+    //when clicked display all markers/shadows again
+    document.querySelectorAll(".leaflet-marker-icon").forEach(function(item){
+        item.style.display = "block";
+    })
+    document.querySelectorAll(".leaflet-marker-shadow").forEach(function(item){
+        item.style.display = "block";
+    })
 }
 
 function createFeedback(){
@@ -323,6 +346,5 @@ function showFeedback(){
         document.querySelector('#feedbackButton').innerText="Feedback"
     })
 }
-
 
 document.addEventListener('DOMContentLoaded',createMap)
