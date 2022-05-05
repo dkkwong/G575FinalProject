@@ -28,7 +28,7 @@ function createMap(){
     })
     //vars to hold bounds
     var southWest = [43.016578, -89.492069],
-        northEast = [43.167417, -89.296058],
+        northEast = [43.197966, -89.210346],
         bounds = L.latLngBounds(southWest,northEast)
     //create the map
     map = L.map('map', {
