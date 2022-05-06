@@ -277,24 +277,50 @@ function createDropdown(data){
 };
 //this function is called when an item in the dropdown menus is clicked
 function updateMarker(){
-    //return the current selected value
-    document.querySelector('#material').value
-    //on click first hide all markers/shadows
-    document.querySelectorAll(".leaflet-marker-icon").forEach(function(item){
-        item.style.display = "none";
-    })
-    document.querySelectorAll(".leaflet-marker-shadow").forEach(function(item){
-        item.style.display = "none";
-    })
-    //use _latlng as unique key for each marker
-    /*
-    map.eachLayer((layer) => {
-        if(layer['_latlng']!=undefined)
-            console.log(layer['_latlng']['lat'])
-    });
-    */
+    var coordinateList=[];
+     //return the current selected value
+    material=document.querySelector('#material').value
+    neighborhood=document.querySelector('#neighborhood').value
+    artist=document.querySelector('#artist').value
+    if (material){
+        for (var i=0; i<dataList.length; i++){
+            //find entries in dataset that match with selected value in the dropdown menu
+            if (dataList[i].properties.Material.includes(material)) {
+                if (!coordinateList.includes(material))
+            coordinateList.push(dataList[i].geometry.coordinates) //store sculpture coordinates that match the input value
+            }
+        }  
+    }
+    if (neighborhood){
+        for (var i=0; i<dataList.length; i++){
+            //find entries in dataset that match with selected value in the dropdown menu
+            if (dataList[i].properties.Neighborhood.includes(neighborhood)) {
+                if (!coordinateList.includes(neighborhood))
+            coordinateList.push(dataList[i].geometry.coordinates) //store sculpture coordinates that match the input value
+            }
+        }  
+    }
+    if (artist){
+        for (var i=0; i<dataList.length; i++){
+            //find entries in dataset that match with selected value in the dropdown menu
+            if (dataList[i].properties.Artist.includes(artist)) {
+                if (!coordinateList.includes(artist))
+                coordinateList.push(dataList[i].geometry.coordinates) //store sculpture coordinates that match the input value
+            }
+        }  
+    }
+    map.eachLayer(function(layer){
+        if(layer.options && layer.options.pane === "markerPane"){ //take only the marker layer
+            layer.remove() //first remove all markers
+            coordinateList.forEach(function(item){  
+                if(item[0]===layer['_latlng'].lng)  //check if the longitude values match
+            layer.addTo(map)  //add back matching markers
+            })
+        //when reset button is clicked add back all markers to the map
+        document.querySelector('#reset').addEventListener('click',function(){layer.addTo(map)})
+        }
+    }); 
 }
-
 
 function createReset(){
     feedback=document.querySelector('#reset')
@@ -304,13 +330,18 @@ function createReset(){
 //function called when reset button is clicked
 function reset(){
     document.querySelector("#dropdown").reset();
+
+    map.eachLayer(function(layer){
+        console.log(layer)
+    })
     //when clicked display all markers/shadows again
+    /*
     document.querySelectorAll(".leaflet-marker-icon").forEach(function(item){
         item.style.display = "block";
     })
     document.querySelectorAll(".leaflet-marker-shadow").forEach(function(item){
         item.style.display = "block";
-    })
+    })*/
 }
 
 function createFeedback(){
