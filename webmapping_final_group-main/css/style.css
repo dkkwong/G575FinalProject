@@ -43,8 +43,16 @@
     font-family: Arial, Helvetica, sans-serif;
     font-size: small;
 }
+#menu{
+    background-color: rgb(168, 165, 165);
+    fill-opacity:100%; 
+}
+/*change menu color on hover*/
+#menu li:hover {
+    background-color: rgb(231, 226, 226);
+  }
 #menu li{
-    width:240px;
+    width:180px;
     display:none;
   }
   /*dropdown menu style*/

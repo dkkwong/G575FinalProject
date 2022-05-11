@@ -171,16 +171,44 @@ function createSequenceControls(){
             };
             //update slider
         document.querySelector('.range-slider').value = index
+        updateSequence(index)
         })
     })
     // input listener for slider
     document.querySelector('.range-slider').addEventListener('input', function(){
         // get the new index value
         var index = this.value;
-        
+        updateSequence(index)
     });
 };
-
+//function is called when the sequence widget is changed
+function updateSequence(value){
+    value=Number(value)
+    var coordinateList=[];
+    
+    for (var i=0; i<dataList.length; i++){
+        if(dataList[i].properties.Year==='Unknown'){
+            dataList[i].properties.Year=2022 //set unknown years to only show at most recent date
+        }
+        //find entries in dataset that match with selected value in the dropdown menu
+        if (dataList[i].properties.Year<value) {
+            if (!coordinateList.includes(value))
+            coordinateList.push(dataList[i].geometry.coordinates) //store sculpture coordinates that match the input value
+        }
+    }
+    
+    map.eachLayer(function(layer){
+        if(layer.options && layer.options.pane === "markerPane"){ //take only the marker layer
+            layer.remove() //first remove all markers
+            coordinateList.forEach(function(item){  
+                if(item[0]===layer['_latlng'].lng)  //check if the longitude values match
+            layer.addTo(map)  //add back matching markers
+            })
+        //when reset button is clicked add back all markers to the map
+        document.querySelector('#reset').addEventListener('click',function(){layer.addTo(map)})
+        }
+    }); 
+}
 
 
 function createSearchBar(data){
