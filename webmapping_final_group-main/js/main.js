@@ -3,7 +3,9 @@ var map,
 neighborhoodBoudaries,
 baseMaps,
 overlayMaps,
-dataList; //variable to store data globally
+markerLayer,
+dataList; 
+var layerGroup = L.layerGroup()
 //function to instantiate the Leaflet map
 function createMap(){
     
@@ -55,9 +57,6 @@ function createMap(){
     };
     
     getData()
-   
-
-
 };
 
 function getData(){
@@ -80,12 +79,10 @@ function getData(){
         .then(function(json){
             var data = json.features //create variable to contain data
             dataList=data
-            L.geoJson(data, { 
+            var layer = L.geoJson(data, { 
                 onEachFeature: onEachFeature  //use to bind associated information to each marker as a pop-up
             }).addTo(map);
-            
-            var attributes = processData(json); //create a list of column field names
-
+            markerLayer=layer
 
             createSequenceControls();
             createSearchBar(data);
@@ -94,18 +91,6 @@ function getData(){
             createFeedback();
             
         })      
-};
-
-function processData(data){
-    //empty array to hold attributes
-    var attributes = []; //create empty array to store data
-    //take properties of first feature to get list of column names
-    var properties = data.features[0].properties; 
-
-   for (var attribute in properties){
-           attributes.push(attribute); //create a list of column field names
-    };
-    return attributes;
 };
 
 function onEachFeature(feature, layer) {
@@ -145,7 +130,7 @@ function onEachFeature(feature, layer) {
 
 function createSequenceControls(){
     var sequence = document.querySelector('#sequence')
-    
+    document.querySelector('#year').insertAdjacentHTML('beforeend','Sculpture older than:2022')
     //create slider
     sequence.insertAdjacentHTML('beforeend', '<input class="range-slider" type="range">')
 
@@ -166,11 +151,17 @@ function createSequenceControls(){
             //increment or decrement depending on button clicked
             if (step.id == 'forward'){
                 index+=10; //increase year by 10
+                //wrap around from first year to last year
+                index = index > 2022 ? 1892 : index;
             } else if (step.id == 'reverse'){
                 index-= 10; //decrease year by 10
+                //wrap around from last year to first year
+                index = index < 1892 ? 2022 : index;
             };
             //update slider
         document.querySelector('.range-slider').value = index
+        //show year
+        document.querySelector('#year').innerHTML='<p>Sculpture older than:' + index + '</p>'
         updateSequence(index)
         })
     })
@@ -178,11 +169,16 @@ function createSequenceControls(){
     document.querySelector('.range-slider').addEventListener('input', function(){
         // get the new index value
         var index = this.value;
+        //show year
+        document.querySelector('#year').innerHTML='<p>Year:' + index + '</p>'
         updateSequence(index)
     });
 };
 //function is called when the sequence widget is changed
 function updateSequence(value){
+    //reset layers to default
+    map.removeLayer(markerLayer)
+    map.addLayer(markerLayer)
     value=Number(value)
     var coordinateList=[];
     
@@ -310,8 +306,12 @@ function createDropdown(data){
     
     
 };
+
 //this function is called when an item in the dropdown menus is clicked
 function updateMarker(value){
+    //reset layers to default
+    map.removeLayer(markerLayer)
+    map.addLayer(markerLayer)
     var coordinateList=[];
      //return the current selected value
     material=document.querySelector('#material').value
@@ -367,13 +367,14 @@ function updateMarker(value){
         //when reset button is clicked add back all markers to the map
         document.querySelector('#reset').addEventListener('click',function(){layer.addTo(map)})
         }
-    }); 
+    });
+
 }
 
 function createReset(){
     feedback=document.querySelector('#reset')
     //add button
-    feedback.insertAdjacentHTML('beforeend','<input type="reset" value="Reset" onClick="reset()"></input>')
+    feedback.insertAdjacentHTML('beforeend','<input id="resetButton" type="reset" value="Reset" onClick="reset()"></input>')
 }
 //function called when reset button is clicked
 function reset(){

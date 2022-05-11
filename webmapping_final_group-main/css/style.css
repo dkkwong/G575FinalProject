@@ -32,7 +32,7 @@
 }
 #sequence{
     width:240px;
-    height:60px;   
+    height:30px;   
     position:relative;
 }
 #search{
@@ -84,6 +84,11 @@
     height:30px;
     position:relative;
 }
+#resetButton{
+    color: rgb(6, 6, 6); 
+    padding: 7px 10px; 
+    cursor: pointer; 
+}
 #feedback-container{
     width:240px;
     height:30px;
@@ -128,6 +133,7 @@
     left: 5px;
     font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     font-size: 13px;
+    height:20px;
 }
 .responsive{
     width:100%;
