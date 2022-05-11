@@ -145,14 +145,14 @@ function onEachFeature(feature, layer) {
 
 function createSequenceControls(){
     var sequence = document.querySelector('#sequence')
+    
     //create slider
     sequence.insertAdjacentHTML('beforeend', '<input class="range-slider" type="range">')
 
     //add skip buttons
     sequence.insertAdjacentHTML('afterbegin', '<button class="step" id="reverse" title="Reverse">-</button>'); 
     sequence.insertAdjacentHTML('beforeend', '<button class="step" id="forward" title="Forward">+</button>');
-    //add text
-    sequence.insertAdjacentHTML('beforeend','<div id="year">Select Year</div>')
+    
 
     document.querySelector(".range-slider").max = 2022;
     document.querySelector(".range-slider").min = 1892;
