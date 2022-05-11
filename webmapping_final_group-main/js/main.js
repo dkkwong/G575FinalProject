@@ -135,7 +135,9 @@ function onEachFeature(feature, layer) {
         }
         //Add image links
         popupContent += '<img class="sculpturePhoto" src="img/sculpturepics/'+feature.properties.Photo+'" width="300px height="350px">'
-        layer.bindPopup(popupContent,{ maxHeight: "auto" } );
+        
+        //bind popup to map, set maxheight to make the popups scrollable instead of taking up the whole screen
+        layer.bindPopup(popupContent,{maxHeight:300}).openPopup;
         
         
     };
