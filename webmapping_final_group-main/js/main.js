@@ -162,7 +162,7 @@ function createSequenceControls(){
         document.querySelector('.range-slider').value = index
         //show year
         document.querySelector('#year').innerHTML='<p>Sculpture older than:' + index + '</p>'
-        updateSequence(index)
+        updateMarker(index)
         })
     })
     // input listener for slider
@@ -171,28 +171,23 @@ function createSequenceControls(){
         var index = this.value;
         //show year
         document.querySelector('#year').innerHTML='<p>Year:' + index + '</p>'
-        updateSequence(index)
+        updateMarker(index)
     });
 };
 //function is called when the sequence widget is changed
-function updateSequence(value){
+function updateSearch(value){
     //reset layers to default
     map.removeLayer(markerLayer)
     map.addLayer(markerLayer)
-    value=Number(value)
     var coordinateList=[];
-    
+
     for (var i=0; i<dataList.length; i++){
-        if(dataList[i].properties.Year==='Unknown'){
-            dataList[i].properties.Year=2022 //set unknown years to only show at most recent date
-        }
         //find entries in dataset that match with selected value in the dropdown menu
-        if (dataList[i].properties.Year<value) {
+        if (dataList[i].properties.Name.includes(value)) {
             if (!coordinateList.includes(value))
             coordinateList.push(dataList[i].geometry.coordinates) //store sculpture coordinates that match the input value
         }
     }
-    
     map.eachLayer(function(layer){
         if(layer.options && layer.options.pane === "markerPane"){ //take only the marker layer
             layer.remove() //first remove all markers
@@ -252,7 +247,7 @@ function runSearch() {
     document.querySelector('#menu').addEventListener('click',function(event){
         value =event.target.innerText
         //pass the clicked text into the update marker function
-        updateMarker(value)
+        updateSearch(value)
     })
 }
 
@@ -350,8 +345,11 @@ function updateMarker(value){
     //filter by name
     if (value){
         for (var i=0; i<dataList.length; i++){
+            if(dataList[i].properties.Year==='Unknown'){
+                dataList[i].properties.Year=2022 //set unknown years to only show at most recent date
+            }
             //find entries in dataset that match with selected value in the dropdown menu
-            if (dataList[i].properties.Name.includes(value)) {
+            if (dataList[i].properties.Year<value) {
                 if (!coordinateList.includes(value))
                 coordinateList.push(dataList[i].geometry.coordinates) //store sculpture coordinates that match the input value
             }
