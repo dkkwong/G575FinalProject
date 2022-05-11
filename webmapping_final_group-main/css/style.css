@@ -95,6 +95,11 @@
 
 .leaflet-popup-content{
     display: inline-block;
+    height: 300px;
+    
+}
+.sculpturePhoto{
+    max-height: 100px;
 }
 
 .leaflet-control-layers{background-color: rgb(236, 226, 226);

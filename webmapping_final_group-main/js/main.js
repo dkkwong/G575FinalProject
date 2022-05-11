@@ -135,8 +135,8 @@ function onEachFeature(feature, layer) {
         }
         //Add image links
         popupContent += '<img class="sculpturePhoto" src="img/sculpturepics/'+feature.properties.Photo+'" width="300px height="350px">'
-        layer.bindPopup(popupContent);
-       
+        layer.bindPopup(popupContent,{ maxHeight: "auto" } );
+        
         
     };
 };
