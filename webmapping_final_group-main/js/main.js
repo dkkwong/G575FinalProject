@@ -152,7 +152,7 @@ function createSequenceControls(){
     sequence.insertAdjacentHTML('afterbegin', '<button class="step" id="reverse" title="Reverse">-</button>'); 
     sequence.insertAdjacentHTML('beforeend', '<button class="step" id="forward" title="Forward">+</button>');
     //add text
-    sequence.insertAdjacentHTML('beforeend','<div id="year">Select Year</div>')
+    sequence.insertAdjacentHTML('beforeend','<div id="subtitle">Select Year:</div>')
 
     document.querySelector(".range-slider").max = 2022;
     document.querySelector(".range-slider").min = 1892;
