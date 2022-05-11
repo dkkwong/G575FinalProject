@@ -224,7 +224,12 @@ function runSearch() {
             item.style.display = "none";
         })
     }
-    document.querySelector('#menu').addEventListener('click',updateMarker)
+    //add event listener when an item in the search menu is clicked
+    document.querySelector('#menu').addEventListener('click',function(event){
+        value =event.target.innerText
+        //pass the clicked text into the update marker function
+        updateMarker(value)
+    })
 }
 
 function createDropdown(data){
@@ -278,14 +283,13 @@ function createDropdown(data){
     
 };
 //this function is called when an item in the dropdown menus is clicked
-function updateMarker(){
+function updateMarker(value){
     var coordinateList=[];
      //return the current selected value
     material=document.querySelector('#material').value
     neighborhood=document.querySelector('#neighborhood').value
     artist=document.querySelector('#artist').value
-    search=document.querySelector('#Search').value
-    console.log(search)
+    //filter by material
     if (material){
         for (var i=0; i<dataList.length; i++){
             //find entries in dataset that match with selected value in the dropdown menu
@@ -295,6 +299,7 @@ function updateMarker(){
             }
         }  
     }
+    //filter by neighborhood
     if (neighborhood){
         for (var i=0; i<dataList.length; i++){
             //find entries in dataset that match with selected value in the dropdown menu
@@ -304,11 +309,22 @@ function updateMarker(){
             }
         }  
     }
+    //filter by artist
     if (artist){
         for (var i=0; i<dataList.length; i++){
             //find entries in dataset that match with selected value in the dropdown menu
             if (dataList[i].properties.Artist.includes(artist)) {
                 if (!coordinateList.includes(artist))
+                coordinateList.push(dataList[i].geometry.coordinates) //store sculpture coordinates that match the input value
+            }
+        }  
+    }
+    //filter by name
+    if (value){
+        for (var i=0; i<dataList.length; i++){
+            //find entries in dataset that match with selected value in the dropdown menu
+            if (dataList[i].properties.Name.includes(value)) {
+                if (!coordinateList.includes(value))
                 coordinateList.push(dataList[i].geometry.coordinates) //store sculpture coordinates that match the input value
             }
         }  
