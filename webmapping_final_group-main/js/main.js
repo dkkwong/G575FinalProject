@@ -205,7 +205,7 @@ function updateSearch(value){
 function createSearchBar(data){
     search=document.querySelector('#search')
     //add button
-    search.insertAdjacentHTML('beforeend','<input type="text" id="Search" onkeyup="runSearch()" placeholder="Search"></input>')
+    search.insertAdjacentHTML('beforeend','<input type="text" id="Search" onkeyup="runSearch()" placeholder="Enter sculpture name..."></input>')
 
     search.insertAdjacentHTML('beforeend','<ul id=menu></ul>') //create unordered list
     
