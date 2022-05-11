@@ -101,7 +101,8 @@
     max-height: 100px;
 }
 
-.leaflet-control-layers{background-color: rgb(236, 226, 226);
+.leaflet-control-layers{
+    background-color: rgb(236, 226, 226);
 }
 /*neighborhood boundaries*/
 .leaflet-interactive{
