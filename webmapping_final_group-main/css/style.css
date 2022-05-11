@@ -8,7 +8,12 @@
     position:absolute;
 }
 #subtitle p{
-    position:relative;
+    position:absolute;
+    font-size: 13px;
+    top: 40px;
+}
+#subtitle h4{
+    position: absolute;
 }
 #sequence{
     width:240px;
