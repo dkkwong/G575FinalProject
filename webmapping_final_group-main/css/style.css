@@ -13,6 +13,18 @@
     top:0px;
     width: 95%;
     text-align: justify;
+    z-index: 9;
+}
+#subtitle2 p{
+    position:relative;
+    font-size: 12px;
+    top:-30px;
+    width: 95%;
+    text-align: justify;
+    z-index: 9;
+}
+#subtitle2 h4{
+    position: relative;
 }
 #subtitle h4{
     position: relative;
@@ -27,6 +39,9 @@
     width:240px;
     height:20px;
     position:relative;
+    z-index: 11;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: small;
 }
 #menu li{
     width:240px;
@@ -65,12 +80,16 @@
     width:240px;
     height:30px;
     position:relative;
+    top: 5px;
+    bottom: 10px;
 }
 #feedbackForm {
     max-width: 300px;
     padding: 10px;
     background-color: rgb(176, 176, 176);
     display: none;
+    position: absolute;
+    z-index: 10;
 }
 #panel{
     width:16%;
@@ -84,6 +103,13 @@
 }
 
 #subtitle{
+    position: relative;
+    left: 5px;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: 13px;
+}
+
+#subtitle2{
     position: relative;
     left: 5px;
     font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
