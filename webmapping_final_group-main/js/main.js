@@ -30,7 +30,7 @@ function createMap(){
     })
     //vars to hold bounds
     var southWest = [43.016578, -89.492069],
-        northEast = [43.197966, -89.210346],
+        northEast = [43.164382, -89.288075],
         bounds = L.latLngBounds(southWest,northEast)
     //create the map
     map = L.map('map', {
@@ -115,8 +115,6 @@ function onEachFeature(feature, layer) {
     var formattedLinks = "";
 
     if (feature.properties) {
-        //Add image links
-        popupContent += '<img class="sculpturePhoto" src="img/sculpturepics/'+feature.properties.Photo+'" width="275px height="350px">'
         //loop to add feature property names and values to html string
         for (var property in feature.properties){
             if(property=="Link"){
@@ -135,7 +133,8 @@ function onEachFeature(feature, layer) {
                 popupContent += "<p><b>" + property + ": </b> " + feature.properties[property] + "</p>";
             }
         }
-        
+        //Add image links
+        popupContent += '<img class="sculpturePhoto" src="img/sculpturepics/'+feature.properties.Photo+'" width="300px height="350px">'
         
         //bind popup to map, set maxheight to make the popups scrollable instead of taking up the whole screen
         layer.bindPopup(popupContent,{maxHeight:300}).openPopup;
@@ -153,7 +152,7 @@ function createSequenceControls(){
     sequence.insertAdjacentHTML('afterbegin', '<button class="step" id="reverse" title="Reverse">-</button>'); 
     sequence.insertAdjacentHTML('beforeend', '<button class="step" id="forward" title="Forward">+</button>');
     //add text
-    sequence.insertAdjacentHTML('beforeend','<div id="subtitle">Select Year:</div>')
+    sequence.insertAdjacentHTML('beforeend','<div id="year">Select Year</div>')
 
     document.querySelector(".range-slider").max = 2022;
     document.querySelector(".range-slider").min = 1892;
@@ -206,7 +205,6 @@ function runSearch() {
     var filter = input.value.toUpperCase();
     var ul = document.getElementById("menu");
     var li = ul.getElementsByClassName("name");
-    console.log(li)
     // Loop through all list items, and hide those who don't match the search query
     for (var i = 0; i < li.length; i++) { 
         if (li[i].innerHTML.toUpperCase().includes(filter)) {
@@ -226,6 +224,7 @@ function runSearch() {
             item.style.display = "none";
         })
     }
+    document.querySelector('#menu').addEventListener('click',updateMarker)
 }
 
 function createDropdown(data){
@@ -285,6 +284,8 @@ function updateMarker(){
     material=document.querySelector('#material').value
     neighborhood=document.querySelector('#neighborhood').value
     artist=document.querySelector('#artist').value
+    search=document.querySelector('#Search').value
+    console.log(search)
     if (material){
         for (var i=0; i<dataList.length; i++){
             //find entries in dataset that match with selected value in the dropdown menu
@@ -333,18 +334,6 @@ function createReset(){
 //function called when reset button is clicked
 function reset(){
     document.querySelector("#dropdown").reset();
-
-    map.eachLayer(function(layer){
-        console.log(layer)
-    })
-    //when clicked display all markers/shadows again
-    /*
-    document.querySelectorAll(".leaflet-marker-icon").forEach(function(item){
-        item.style.display = "block";
-    })
-    document.querySelectorAll(".leaflet-marker-shadow").forEach(function(item){
-        item.style.display = "block";
-    })*/
 }
 
 function createFeedback(){
