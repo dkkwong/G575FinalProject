@@ -130,7 +130,7 @@ function onEachFeature(feature, layer) {
 
 function createSequenceControls(){
     var sequence = document.querySelector('#sequence')
-    document.querySelector('#year').insertAdjacentHTML('beforeend','Sculpture older than:2022')
+    document.querySelector('#year').insertAdjacentHTML('beforeend','Sculpture older than: 2022')
     //create slider
     sequence.insertAdjacentHTML('beforeend', '<input class="range-slider" type="range">')
 
@@ -161,7 +161,7 @@ function createSequenceControls(){
             //update slider
         document.querySelector('.range-slider').value = index
         //show year
-        document.querySelector('#year').innerHTML='<p>Sculpture older than:' + index + '</p>'
+        document.querySelector('#year').innerHTML='<p>Sculpture older than: ' + index + '</p>'
         updateMarker(index)
         })
     })
@@ -378,7 +378,7 @@ function createReset(){
 function reset(){
     document.querySelector("#dropdown").reset();
     document.querySelector(".range-slider").value = 2022;
-    document.querySelector('#year').innerHTML='<p>Sculpture older than:' + 2022 + '</p>'
+    document.querySelector('#year').innerHTML='<p>Sculpture older than: ' + 2022 + '</p>'
 }
 
 function createFeedback(){
