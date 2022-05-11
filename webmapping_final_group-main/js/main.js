@@ -292,12 +292,9 @@ function createDropdown(data){
         document.querySelector('#artist').insertAdjacentHTML('beforeend','<option class="artist-option">' + artistList[i]+ '</option>')  
    }
    //add event listener to all dropdown menu options
-    document.querySelectorAll('.material-option').forEach(function(step){
-        step.addEventListener("click", updateMarker)})
-    document.querySelectorAll('.neighborhood-option').forEach(function(step){
-        step.addEventListener("click", updateMarker)})
-    document.querySelectorAll('.artist-option').forEach(function(step){
-        step.addEventListener("click", updateMarker)})
+    document.querySelector('#material').addEventListener("change",updateMarker)
+    document.querySelector('#neighborhood').addEventListener("change",updateMarker)
+    document.querySelector('#artist').addEventListener("change",updateMarker)
     
     
 };
