@@ -100,6 +100,8 @@ function onEachFeature(feature, layer) {
     var formattedLinks = "";
 
     if (feature.properties) {
+        //Add image links
+        popupContent += '<img class="sculpturePhoto" src="img/sculpturepics/'+feature.properties.Photo+'" width="275px height="350px">'
         //loop to add feature property names and values to html string
         for (var property in feature.properties){
             if(property=="Link"){
@@ -118,8 +120,7 @@ function onEachFeature(feature, layer) {
                 popupContent += "<p><b>" + property + ": </b> " + feature.properties[property] + "</p>";
             }
         }
-        //Add image links
-        popupContent += '<img class="sculpturePhoto" src="img/sculpturepics/'+feature.properties.Photo+'" width="300px height="350px">'
+        
         
         //bind popup to map, set maxheight to make the popups scrollable instead of taking up the whole screen
         layer.bindPopup(popupContent,{maxHeight:300}).openPopup;
