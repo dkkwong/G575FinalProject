@@ -86,7 +86,7 @@
 #feedbackForm {
     max-width: 300px;
     padding: 10px;
-    background-color: rgb(176, 176, 176);
+    background-color: rgb(210, 203, 203);
     display: none;
     position: absolute;
     z-index: 10;
@@ -95,7 +95,7 @@
     width:16%;
     height:700px;
     display:inline-block;
-    background-color: rgb(176, 176, 176);
+    background-color: rgb(210, 203, 203);
     outline-color:black;
     position: absolute;
     left: 0;
