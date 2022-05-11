@@ -377,6 +377,8 @@ function createReset(){
 //function called when reset button is clicked
 function reset(){
     document.querySelector("#dropdown").reset();
+    document.querySelector(".range-slider").value = 2022;
+    document.querySelector('#year').innerHTML='<p>Sculpture older than:' + 2022 + '</p>'
 }
 
 function createFeedback(){
